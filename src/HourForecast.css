@@ -1,0 +1,27 @@
+.hourDisplay {
+    width: 10rem;
+    padding: 0 2rem;
+    text-align: left;
+    font-weight: 300;
+}
+
+.temperature {
+    padding: 0 0.5rem;
+}
+
+.precipitation {
+    padding: 0 0.5rem;
+}
+
+.forecastHourRow {
+    width: 100%;
+    padding: 1rem 0;
+    display: flex;
+}
+
+.forecastHourRow:not(:first-child) {
+    width: 100%;
+    padding: 1rem 0;
+    display: flex;
+    border-top: 1px solid #f0f0f0;
+}
