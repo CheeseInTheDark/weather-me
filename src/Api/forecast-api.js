@@ -1,7 +1,7 @@
 import { flatten, range, zipWith } from 'lodash'
 import moment from 'moment'
 
-export default async function getHourlyForecast() {
+export default async function getForecast() {
     const weatherResponse = await fetch('https://api.weather.gov/gridpoints/ILN/49,79')
     const body = await weatherResponse.text()
     const data = JSON.parse(body).properties

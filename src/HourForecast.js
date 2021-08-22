@@ -12,9 +12,9 @@ export default function HourForecast({ hourlyData }) {
 
     return <div className="forecastHourRow">
         <span className="hourDisplay">{hourString}</span>
-        <span className="temperature">{temperature}</span>
-        <span className="precipitation">{precipitation}</span>
-        <span className="windSpeed">{windSpeed}</span>
+        <span className="forecastItem">{temperature}</span>
+        <span className="forecastItem">{precipitation}</span>
+        <span className="forecastItem">{windSpeed}</span>
     </div>
 
 }

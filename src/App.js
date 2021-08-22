@@ -1,7 +1,7 @@
 import './App.css'
 import { useEffect, useState } from 'react'
 import WeatherInfo from './WeatherInfo'
-import getHourlyForecast from './forecast-api'
+import getForecast from './Api/forecast-api'
 
 function App() {
 
@@ -10,7 +10,7 @@ function App() {
   useEffect(() => { getWeather() }, [])
 
   async function getWeather() {
-    const hourlyForecast = await getHourlyForecast()
+    const hourlyForecast = await getForecast()
     setWeatherData(hourlyForecast)
   }
 
