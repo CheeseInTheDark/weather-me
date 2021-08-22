@@ -1,4 +1,2 @@
 npm install
-npm uninstall react-scripts
-npm install -D react-scripts
-npm run build
+./node_modules/.bin/react-scripts build
