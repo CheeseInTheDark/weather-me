@@ -8,8 +8,9 @@ export default async function getHourlyForecast() {
 
     const temperatures = hourlyTemperatures(data)
     const precipitationChances = hourlyPrecipitationChances(data)
+    const windSpeeds = hourlyWindSpeeds(data)
     
-    const hourlyWeatherData = zipWith(temperatures, precipitationChances, toHourlyData)
+    const hourlyWeatherData = zipWith(temperatures, precipitationChances, windSpeeds, toHourlyData)
     return truncate(hourlyWeatherData)
 }
 
@@ -18,11 +19,12 @@ function truncate(data) {
     return data.filter(row => row.timestamp !== undefined && row.timestamp.isBefore(endDate))
 }
 
-function toHourlyData(temperature, precipitationChance) {
+function toHourlyData(temperature, precipitationChance, windSpeed) {
     return { 
         timestamp: temperature?.timestamp, 
         temperature: temperature?.value,
-        precipitationChance: precipitationChance?.value
+        precipitationChance: precipitationChance?.value,
+        windSpeed: windSpeed?.value
     }
 }
 
@@ -48,6 +50,19 @@ function hourlyPrecipitationChances(forecastData) {
 
 function toHourlyPrecipitationChances(precipitationChance) {
     return expandToHourly(precipitationChance.value, precipitationChance.validTime)
+}
+
+function hourlyWindSpeeds(forecastData) {
+    const sparseWindSpeedData = forecastData.windSpeed.values
+    const expandedWindSpeeds = sparseWindSpeedData.map(toHourlyWindSpeeds)
+
+    return flatten(expandedWindSpeeds)
+}
+
+function toHourlyWindSpeeds(windSpeed) {
+    const windSpeedInMPH = convertKPHtoMPH(windSpeed.value)
+
+    return expandToHourly(windSpeedInMPH, windSpeed.validTime)
 }
 
 function expandToHourly(value, timeString) {
