@@ -3,12 +3,12 @@ import './HourForecast.css'
 const useDefaultLocale = undefined
 const formatWindSpeed = new Intl.NumberFormat(useDefaultLocale, { maximumFractionDigits: 0 }).format
 
-export default function HourForecast({ hourlyData }) {
+export default function HourForecast({ weatherData }) {
     
-    const hourString = toHourString(hourlyData)
-    const temperature = toTemperature(hourlyData)
-    const precipitation = toPrecipitation(hourlyData)
-    const windSpeed = toWindSpeed(hourlyData)
+    const hourString = toHourString(weatherData)
+    const temperature = toTemperature(weatherData)
+    const precipitation = toPrecipitation(weatherData)
+    const windSpeed = toWindSpeed(weatherData)
 
     return <div className="forecastHourRow">
         <span className="hourDisplay">{hourString}</span>
@@ -16,7 +16,6 @@ export default function HourForecast({ hourlyData }) {
         <span className="forecastItem">{precipitation}</span>
         <span className="forecastItem">{windSpeed}</span>
     </div>
-
 }
 
 function toHourString(row) {
