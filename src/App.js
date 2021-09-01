@@ -1,7 +1,7 @@
 import './App.css'
 import { useEffect, useState } from 'react'
 import WeatherInfo from './WeatherInfo'
-import getForecast from './Api/forecast-api'
+import getForecast from './Api/Forecast/forecast-api'
 
 function App() {
 
